@@ -7,6 +7,7 @@ export const DarkTheme = {
         purple: '#744c9d',
         main: 'blue',
         backgroundColor: '#2d3436',
+        header: '#0a3d62'
     },
     button: {},
     size: {

@@ -7,6 +7,7 @@ export const LightTheme = {
         purple: '#744c9d',
         main: '#744c9d',
         backgroundColor: '#fff',
+        header: '#60a3bc'
     },
     button: {
         
