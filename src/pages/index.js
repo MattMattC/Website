@@ -1,44 +1,47 @@
 import React from 'react';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import { Link as LinkGatsby } from 'gatsby';
+import { SimpleGrid } from '@chakra-ui/core';
+import Article from '../components/Article';
 
-const IndexPage = () => (
-    <Layout>
-        <SEO title="Home" />
-        <p>Welcome ! </p>
-        Pariatur cillum ipsum dolor magna sunt mollit mollit labore culpa
-        nostrud pariatur sint enim. Sunt eu quis officia occaecat laboris culpa
-        in irure pariatur occaecat. Dolor sint tempor labore aliqua incididunt
-        exercitation aliqua occaecat quis excepteur. Nulla fugiat adipisicing
-        eiusmod eu Lorem. Velit in esse veniam laboris et nulla elit esse duis
-        amet eu nostrud mollit do. Pariatur cillu   m ipsum dolor magna sunt mollit
-        mollit labore culpa nostrud pariatur sint enim. Sunt eu quis officia
-        occaecat laboris culpa in irure pariatur occaecat. Dolor sint tempor
-        labore aliqua incididunt exercitation aliqua occaecat quis excepteur.
-        Nulla fugiat adipisicing eiusmod eu Lorem. Velit in esse veniam laboris
-        et nulla elit esse duis amet eu nostrud mollit do. Pariatur cillum ipsum
-        dolor magna sunt mollit mollit labore culpa nostrud pariatur sint enim.
-        Sunt eu quis officia occaecat laboris culpa in irure pariatur occaecat.
-        Dolor sint tempor labore aliqua incididunt exercitation aliqua occaecat
-        quis excepteur. Nulla fugiat adipisicing eiusmod eu Lorem. Velit in esse
-        veniam laboris et nulla elit esse duis amet eu nostrud mollit do.
-        Pariatur cillum ipsum dolor magna sunt mollit mollit labore culpa
-        nostrud pariatur sint enim. Sunt eu quis officia occaecat laboris culpa
-        in irure pariatur occaecat. Dolor sint tempor labore aliqua incididunt
-        exercitation aliqua occaecat quis excepteur. Nulla fugiat adipisicing
-        eiusmod eu Lorem. Velit in esse veniam laboris et nulla elit esse duis
-        amet eu nostrud mollit do. Pariatur cillum ipsum dolor magna sunt mollit
-        mollit labore culpa nostrud pariatur sint enim. Sunt eu quis officia
-        occaecat laboris culpa in irure pariatur occaecat. Dolor sint tempor
-        labore aliqua incididunt exercitation aliqua occaecat quis excepteur.
-        Nulla fugiat adipisicing eiusmod eu Lorem. Velit in esse veniam laboris
-        et nulla elit esse duis amet eu nostrud mollit do. Pariatur cillum ipsum
-        dolor magna sunt mollit mollit labore culpa nostrud pariatur sint enim.
-        Sunt eu quis officia occaecat laboris culpa in irure pariatur occaecat.
-        Dolor sint tempor labore aliqua incididunt exercitation aliqua occaecat
-        quis excepteur. Nulla fugiat adipisicing eiusmod eu Lorem. Velit in esse
-        veniam laboris et nulla elit esse duis amet eu nostrud mollit do.
-    </Layout>
-);
+const IndexPage = props => {
+    const articles = props.data.allMarkdownRemark.edges;
 
+    return (
+        <Layout>
+            <SEO title="Home" />
+            <SimpleGrid columns={3} spacing={10} minChildWidth="200px">
+                {articles.map(({ node }, index) => {
+                    return <Article node={node} />;
+                })}
+            </SimpleGrid>
+        </Layout>
+    );
+};
+
+export const pageQuery = graphql`
+    query {
+        site {
+            siteMetadata {
+                title
+            }
+        }
+        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+            edges {
+                node {
+                    excerpt
+                    fields {
+                        slug
+                    }
+                    frontmatter {
+                        date(formatString: "MMMM DD, YYYY")
+                        title
+                        description
+                    }
+                }
+            }
+        }
+    }
+`;
 export default IndexPage;

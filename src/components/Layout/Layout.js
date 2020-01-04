@@ -1,7 +1,8 @@
 import React from 'react';
-import { MyThemeProvider } from '../../contexts/ThemeContext';
-import styled, { withTheme, createGlobalStyle } from 'styled-components';
+import styled, {  createGlobalStyle } from 'styled-components';
 import { normalize } from 'polished';
+import { ThemeProvider, ColorModeProvider, CSSReset } from '@chakra-ui/core';
+import { LightTheme } from '../../theme';
 
 const NormalizeStyle = createGlobalStyle`
     ${normalize()};
@@ -20,22 +21,14 @@ const NormalizeStyle = createGlobalStyle`
     }
 `;
 
-const GlobalStyle = styled.div`
-    height: 100%;
-    background-color: ${({ theme }) => theme.theme.color.backgroundColor};
-    min-height: 100%;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-template-columns: 100%;
-`;
-
 const Layout = ({ children }) => {
     return (
-        <MyThemeProvider>
+        <ThemeProvider theme={LightTheme}>
             <NormalizeStyle />
-            <GlobalStyle>{children}</GlobalStyle>
-        </MyThemeProvider>
+            <CSSReset />
+            <ColorModeProvider>{children}</ColorModeProvider>
+        </ThemeProvider>
     );
 };
 
-export default withTheme(Layout);
+export default Layout;

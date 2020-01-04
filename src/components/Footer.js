@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import ContainerPage from './ContainerPage';
 
 const FooterStyle = styled.footer`
-    background-color: ${props => props.theme.theme.color.lightGray};
 `;
 
 const Footer = props => {
