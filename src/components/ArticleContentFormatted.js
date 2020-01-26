@@ -24,13 +24,13 @@ const ArticleContentFormatted = props => {
 
     const { colorMode } = useColorMode();
 
-    console.log(theme);
     const colorTitle = {
         light: theme.colors.teal[700],
         dark: theme.colors.gray[100],
     };
 
     const StyleFormatted = styled.div`
+        font-family: 'Georgia';
         h1,
         h2,
         h3,
@@ -57,6 +57,18 @@ const ArticleContentFormatted = props => {
         li,
         p {
             color: ${colorTitle[colorMode]};
+        }
+        .gatsby-highlight {
+            margin: ${theme.space[4]} 0;
+        }
+        blockquote {
+            margin: ${theme.space[4]} 0;
+            border-left: ${theme.borders['4px']} ${theme.colors.gray[200]};
+            padding: 0 ${theme.space[2]};
+            background-color: ${bgColorTableHead[colorMode]};
+        }
+        p {
+            margin: ${theme.space[4]} 0;
         }
         pre {
             font-size: ${theme.fontSizes.sm};
@@ -107,6 +119,9 @@ const ArticleContentFormatted = props => {
                 color: ${theme.colors.orange[700]};
             }
         }
+        hr{
+            border-color: ${bgColorTableHead[colorMode]};
+        }
     `;
 
     return (
@@ -114,7 +129,6 @@ const ArticleContentFormatted = props => {
             <StyleFormatted>
                 <Box
                     as="section"
-                    // color={colorGlobalContent[colorMode]}
                     dangerouslySetInnerHTML={{ __html: post.html }}
                 />
             </StyleFormatted>

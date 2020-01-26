@@ -1,8 +1,7 @@
 import React from 'react';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
-import { Link as LinkGatsby } from 'gatsby';
-import { SimpleGrid } from '@chakra-ui/core';
+import { SimpleGrid, Stack } from '@chakra-ui/core';
 import Article from '../components/Article';
 
 const IndexPage = props => {
@@ -11,9 +10,9 @@ const IndexPage = props => {
     return (
         <Layout>
             <SEO title="Home" />
-            <SimpleGrid columns={3} spacing={10} minChildWidth="200px">
+            <SimpleGrid columns={2} spacing={10} minChildWidth="300px">
                 {articles.map(({ node }, index) => {
-                    return <Article node={node} />;
+                    return <Article key={index} node={node} />;
                 })}
             </SimpleGrid>
         </Layout>
@@ -38,6 +37,7 @@ export const pageQuery = graphql`
                         date(formatString: "MMMM DD, YYYY")
                         title
                         description
+                        categories
                     }
                 }
             }
