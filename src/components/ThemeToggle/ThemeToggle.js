@@ -1,23 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
-import { useColorMode } from '@chakra-ui/core';
-const Button = styled.div`
-    background-color: white;
-    display: inline-block;
-    padding: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 10px;
-`;
+import { useColorMode, IconButton } from '@chakra-ui/core';
 
-const ThemeToggle = props => {
+const ThemeToggle = () => {
     const { colorMode, toggleColorMode } = useColorMode();
+    const colorButton = { light: 'gray', dark: 'yellow' };
+
     return (
-        <div>
-            <Button onClick={toggleColorMode}>
-                <span>{colorMode === 'light' ? '🌇' : '🌃'}</span>
-            </Button>
-        </div>
+        <IconButton
+            variantColor={colorButton[colorMode]}
+            onClick={toggleColorMode}
+            icon={colorMode === 'light' ? 'moon' : 'sun'}
+        />
     );
 };
 

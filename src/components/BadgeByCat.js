@@ -23,7 +23,7 @@ const BadgeByCat = ({ cat }) => {
     }
 
     return (
-        <Badge mr="1" variantColor={colorCat[colorMode]}>
+        <Badge mr="1" fontSize="0.6em" variantColor={colorCat[colorMode]}>
             {cat}
         </Badge>
     );

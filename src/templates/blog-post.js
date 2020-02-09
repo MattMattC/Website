@@ -37,6 +37,13 @@ export const pageQuery = graphql`
                 description
                 time_to_read
                 categories
+                imageHead {
+                    childImageSharp {
+                        fluid(maxWidth: 800) {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
             }
         }
     }

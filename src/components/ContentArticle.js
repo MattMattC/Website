@@ -7,11 +7,11 @@ import {
     Heading,
     Text,
     Divider,
-    Badge,
     Flex,
     Icon,
+    Link,
 } from '@chakra-ui/core';
-import { Link } from 'gatsby';
+import { Link as LinkGatsby } from 'gatsby';
 import BadgeByCat from '../components/BadgeByCat';
 import ArticleContentFormatted from './ArticleContentFormatted';
 
@@ -31,7 +31,9 @@ const ContentArticle = props => {
         <Box>
             <header>
                 <Text color={smallText[colorMode]} as="p" fontSize="xs">
-                    <Link to="/"> Retour au blog</Link>
+                    <Link as={LinkGatsby} to="/">
+                        Retour
+                    </Link>
                 </Text>
                 <Heading color={colorText[colorMode]}>
                     {post.frontmatter.title}
@@ -41,19 +43,15 @@ const ContentArticle = props => {
                           <BadgeByCat key={index} cat={cat} />
                       ))
                     : null}
-                <Flex justify="space-between" >
+                <Flex justify="space-between">
                     <Text color={colorText[colorMode]} as="p" fontSize="xs">
                         {date}
                     </Text>
                     {post.frontmatter.time_to_read ? (
-                            <Text
-                                color={colorText[colorMode]}
-                                as="p"
-                                fontSize="xs"
-                            >
-                                <Icon name="time" />
-                                {' '  + post.frontmatter.time_to_read + ' m'}
-                            </Text>
+                        <Text color={colorText[colorMode]} as="p" fontSize="xs">
+                            <Icon name="time" />
+                            {' ' + post.frontmatter.time_to_read + ' m'}
+                        </Text>
                     ) : null}
                 </Flex>
             </header>
@@ -63,18 +61,26 @@ const ContentArticle = props => {
             <nav>
                 <ButtonGroup spacing={4}>
                     {previous && (
-                        <Button variantColor="teal" variant="solid">
-                            <Link to={'blog' + previous.fields.slug} rel="prev">
+                        <Link
+                            as={LinkGatsby}
+                            to={'blog' + previous.fields.slug}
+                            rel="prev"
+                        >
+                            <Button variantColor="teal" variant="solid">
                                 ← {previous.frontmatter.title}
-                            </Link>
-                        </Button>
+                            </Button>
+                        </Link>
                     )}
                     {next && (
-                        <Button variantColor="teal" variant="solid">
-                            <Link to={'blog' + next.fields.slug} rel="next">
+                        <Link
+                            as={LinkGatsby}
+                            to={'blog' + next.fields.slug}
+                            rel="next"
+                        >
+                            <Button variantColor="teal" variant="solid">
                                 {next.frontmatter.title} →
-                            </Link>
-                        </Button>
+                            </Button>
+                        </Link>
                     )}
                 </ButtonGroup>
             </nav>

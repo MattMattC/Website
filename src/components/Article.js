@@ -1,59 +1,77 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link as LinkGatsby } from 'gatsby';
 import {
     Box,
     Text,
-    SimpleGrid,
     Heading,
     useColorMode,
     Link,
     Icon,
-    Divider,
     Flex,
-    IconButton,
 } from '@chakra-ui/core';
 import BadgeByCat from './BadgeByCat';
+
 const Article = props => {
     const { node } = props;
-
     const { colorMode } = useColorMode();
-    const colorText = { light: 'teal.600', dark: 'gray.100' };
-    const colorTextSmall = { light: 'gray.600', dark: 'gray.300' };
+    const colorText = { light: 'teal.800', dark: 'gray.100' };
+    const colorTextSmall = { light: 'gray.500', dark: 'gray.300' };
     const colorDescription = { light: 'gray.600', dark: 'gray.300' };
-
     const title = node.frontmatter.title || node.fields.slug;
-    var options = { year: 'numeric', month: 'long', day: 'numeric' };
+    var options = { year: 'numeric', month: 'short', day: 'numeric' };
 
     const date = new Intl.DateTimeFormat('fr-FR', options).format(
         new Date(node.frontmatter.date)
     );
+
     return (
-        <Box key={node.fields.slug} p={2} shadow="lg">
+        <Box key={node.fields.slug} pt={2}>
             <header>
+                <Flex justifyContent="space-between">
+                    <Flex alignItems="center">
+                        <Icon
+                            name="calendar"
+                            size="14px"
+                            mr="2"
+                            color={colorTextSmall[colorMode]}
+                        />
+                        <Text
+                            as="small"
+                            fontSize="xs"
+                            color={colorTextSmall[colorMode]}
+                        >
+                            {date}
+                        </Text>
+                    </Flex>
+                    <Flex alignItems="center">
+                        <Icon
+                            name="time"
+                            size="14px"
+                            mr="2"
+                            color={colorTextSmall[colorMode]}
+                        />
+                        <Text
+                            as="small"
+                            fontSize="xs"
+                            color={colorTextSmall[colorMode]}
+                        >
+                            {node.frontmatter.time_to_read} min
+                        </Text>
+                    </Flex>
+                </Flex>
                 <Heading as="h3" fontSize="2xl" color={colorText[colorMode]}>
-                    <Link
-                        color={colorText[colorMode]}
-                        as={LinkGatsby}
-                        to={'/blog' + node.fields.slug}
-                    >
+                    <Link as={LinkGatsby} to={'/blog' + node.fields.slug}>
                         {title}
                     </Link>
                 </Heading>
-                <Flex alignItems="center">
-                    <Icon name="calendar" size="16px" mr="2" />
-                    <Text as="small" color={colorTextSmall[colorMode]}>
-                        {date}
-                    </Text>
-
-                    <Divider orientation="vertical" />
-                    {node.frontmatter.categories
-                        ? node.frontmatter.categories.map((cat, index) => (
-                              <BadgeByCat key={index} cat={cat} />
-                          ))
-                        : null}
-                </Flex>
             </header>
+            <Flex>
+                {node.frontmatter.categories
+                    ? node.frontmatter.categories.map((cat, index) => (
+                          <BadgeByCat key={index} cat={cat} />
+                      ))
+                    : null}
+            </Flex>
             <Text
                 mt="2"
                 fontSize="sm"
@@ -62,17 +80,15 @@ const Article = props => {
                     __html: node.frontmatter.description || node.excerpt,
                 }}
             />
+
             <Flex justifyContent="right">
-                <Text>
+                <Text fontSize="xs">
                     <Link
                         color={colorText[colorMode]}
                         as={LinkGatsby}
                         to={'/blog' + node.fields.slug}
                     >
-                        <IconButton
-                            aria-label="Search database"
-                            icon="arrow-forward"
-                        />
+                        Lire l'article
                     </Link>
                 </Text>
             </Flex>

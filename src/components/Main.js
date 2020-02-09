@@ -7,7 +7,12 @@ const Main = ({ children }) => {
 
     return (
         <Box bg={bgColor[colorMode]}>
-            <Box m="0 auto" p={2} as="main" width={['100%', '60%', '80M']}>
+            <Box
+                m="0 auto"
+                p={2}
+                as="main"
+                width={['60%', '100%', '90%', '60%']}
+            >
                 {children}
             </Box>
         </Box>

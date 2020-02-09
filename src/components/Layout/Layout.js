@@ -10,6 +10,7 @@ const NormalizeStyle = createGlobalStyle`
         font-size: 21px;
         height: 100%;
         width: 100%;
+        font-family: 'Open Sans'
     }  
     #___gatsby, #gatsby-focus-wrapper {
         height: 100%;

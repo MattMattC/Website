@@ -5,10 +5,7 @@ import styled from 'styled-components';
 const ArticleContentFormatted = props => {
     const { post } = props;
     const theme = useTheme();
-    const colorGlobalContent = {
-        light: theme.colors.gray[600],
-        dark: theme.colors.gray[100],
-    };
+
     const bgColorTableHead = {
         light: theme.colors.gray[300],
         dark: theme.colors.gray[600],
@@ -25,7 +22,7 @@ const ArticleContentFormatted = props => {
     const { colorMode } = useColorMode();
 
     const colorTitle = {
-        light: theme.colors.teal[700],
+        light: theme.colors.gray[700],
         dark: theme.colors.gray[100],
     };
 
@@ -119,20 +116,15 @@ const ArticleContentFormatted = props => {
                 color: ${theme.colors.orange[700]};
             }
         }
-        hr{
+        hr {
             border-color: ${bgColorTableHead[colorMode]};
         }
     `;
 
     return (
-        <div>
-            <StyleFormatted>
-                <Box
-                    as="section"
-                    dangerouslySetInnerHTML={{ __html: post.html }}
-                />
-            </StyleFormatted>
-        </div>
+        <StyleFormatted>
+            <Box as="section" dangerouslySetInnerHTML={{ __html: post.html }} />
+        </StyleFormatted>
     );
 };
 
