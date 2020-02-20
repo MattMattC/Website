@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, useColorMode,  List, ListItem } from '@chakra-ui/core';
+import { Box, useColorMode, Text, Link, Flex } from '@chakra-ui/core';
 
 const Footer = () => {
     const { colorMode } = useColorMode();
@@ -9,9 +9,14 @@ const Footer = () => {
     return (
         <Box bg={bgColor[colorMode]} color={colorText[colorMode]}>
             <Box m="0 auto" p={2} as="main" width={['100%', '60%', '80M']}>
-                <List as="ol" styleType="none">
-                    <ListItem>Made with Gastby and ♥</ListItem>
-                </List>
+                <Flex justifyContent="space-between" flexWrap="wrap">
+                    <Text fontSize="xs">
+                        Made with{' '}
+                        <Link href="https://www.gatsbyjs.org/">Gatsby</Link> &{' '}
+                        <Link href="https://chakra-ui.com/">ChakraUi</Link>
+                    </Text>
+                    <Text fontSize="xs">Copyright © 2020</Text>
+                </Flex>
             </Box>
         </Box>
     );

@@ -3,9 +3,8 @@ import { Box, useTheme, useColorMode } from '@chakra-ui/core';
 import styled from 'styled-components';
 
 const ArticleContentFormatted = props => {
-    const { post } = props;
     const theme = useTheme();
-
+//  <Box as="section" dangerouslySetInnerHTML={{ __html: post.html }} />
     const bgColorTableHead = {
         light: theme.colors.gray[300],
         dark: theme.colors.gray[600],
@@ -123,7 +122,7 @@ const ArticleContentFormatted = props => {
 
     return (
         <StyleFormatted>
-            <Box as="section" dangerouslySetInnerHTML={{ __html: post.html }} />
+           {props.children}
         </StyleFormatted>
     );
 };

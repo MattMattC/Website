@@ -11,7 +11,7 @@ const Main = ({ children }) => {
                 m="0 auto"
                 p={2}
                 as="main"
-                width={['60%', '100%', '90%', '60%']}
+                width={['100%', '100%', '90%', '50%']}
             >
                 {children}
             </Box>
