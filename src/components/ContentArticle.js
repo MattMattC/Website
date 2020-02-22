@@ -56,7 +56,9 @@ const ContentArticle = props => {
                 </Flex>
             </header>
             <Divider borderColor={colorBorder[colorMode]} />
-            <ArticleContentFormatted post={post} />
+            <ArticleContentFormatted>
+                 <Box as="section" dangerouslySetInnerHTML={{ __html: post.html }} />
+            </ArticleContentFormatted>
             <Divider borderColor={colorBorder[colorMode]} />
             <nav>
                 <ButtonGroup spacing={4}>

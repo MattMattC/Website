@@ -3,12 +3,13 @@ import { useColorMode, IconButton } from '@chakra-ui/core';
 
 const ThemeToggle = () => {
     const { colorMode, toggleColorMode } = useColorMode();
-    const colorButton = { light: 'gray', dark: 'yellow' };
+    const colorButton = { light: 'gray', dark: 'gray' };
 
     return (
         <IconButton
             variantColor={colorButton[colorMode]}
             onClick={toggleColorMode}
+            size="xs"
             icon={colorMode === 'light' ? 'moon' : 'sun'}
         />
     );
