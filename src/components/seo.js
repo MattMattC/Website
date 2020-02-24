@@ -40,16 +40,24 @@ function SEO({ description, lang, meta, title }) {
                     content: metaDescription,
                 },
                 {
-                    name: `og:title`,
+                    name: `title`,
                     content: title,
                 },
                 {
-                    name: `og:description`,
+                    property: `og:title`,
+                    content: title,
+                },
+                {
+                    property: `og:description`,
                     content: metaDescription,
                 },
                 {
-                    name: `og:type`,
+                    property: `og:type`,
                     content: `website`,
+                },
+                {
+                    property: `og:image`,
+                    content: `https://mattmattc.github.io//static/667c96385d419bea434bc623df8ca795/137ce/mc.png`,
                 },
                 {
                     name: `twitter:card`,
@@ -64,10 +72,6 @@ function SEO({ description, lang, meta, title }) {
                     content: title,
                 },
                 { name: `twitter:description`, content: metaDescription },
-                {
-                    name: `og:image`,
-                    content: `https://mattmattc.github.io//static/667c96385d419bea434bc623df8ca795/137ce/mc.png`,
-                },
                 {
                     name: `twitter:image`,
                     content: `https://mattmattc.github.io//static/667c96385d419bea434bc623df8ca795/137ce/mc.png`,
