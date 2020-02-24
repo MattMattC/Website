@@ -40,15 +40,15 @@ function SEO({ description, lang, meta, title }) {
                     content: metaDescription,
                 },
                 {
-                    property: `og:title`,
+                    name: `og:title`,
                     content: title,
                 },
                 {
-                    property: `og:description`,
+                    name: `og:description`,
                     content: metaDescription,
                 },
                 {
-                    property: `og:type`,
+                    name: `og:type`,
                     content: `website`,
                 },
                 {
@@ -63,18 +63,15 @@ function SEO({ description, lang, meta, title }) {
                     name: `twitter:title`,
                     content: title,
                 },
-                {
-                    name: `twitter:description`,
-                    content: metaDescription,
-                },
+                { name: `twitter:description`, content: metaDescription },
                 {
                     name: `og:image`,
-                    content: `https://matthieucoulon.fr/static/667c96385d419bea434bc623df8ca795/137ce/mc.png`
+                    content: `https://mattmattc.github.io//static/667c96385d419bea434bc623df8ca795/137ce/mc.png`,
                 },
                 {
                     name: `twitter:image`,
-                    content: `https://matthieucoulon.fr/static/667c96385d419bea434bc623df8ca795/137ce/mc.png`
-                }
+                    content: `https://mattmattc.github.io//static/667c96385d419bea434bc623df8ca795/137ce/mc.png`,
+                },
             ].concat(meta)}
         />
     );
