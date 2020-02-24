@@ -60,6 +60,14 @@ function SEO({ description, lang, meta, title }) {
                     content: `https://mattmattc.github.io//static/667c96385d419bea434bc623df8ca795/137ce/mc.png`,
                 },
                 {
+                    property: `og:image:height`,
+                    content: `454`,
+                },
+                {
+                    property: `og:image:width`,
+                    content: `468`,
+                },
+                {
                     name: `twitter:card`,
                     content: `summary`,
                 },
