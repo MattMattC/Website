@@ -70,6 +70,10 @@ function SEO({ description, lang, meta, title }) {
                 {
                     name: `og:image`,
                     content: `https://matthieucoulon.fr/static/667c96385d419bea434bc623df8ca795/137ce/mc.png`
+                },
+                {
+                    name: `twitter:image`,
+                    content: `https://matthieucoulon.fr/static/667c96385d419bea434bc623df8ca795/137ce/mc.png`
                 }
             ].concat(meta)}
         />
