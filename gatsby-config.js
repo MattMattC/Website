@@ -56,6 +56,13 @@ module.exports = {
             },
         },
         {
+            resolve: `gatsby-plugin-google-analytics`,
+            options: {
+                trackingId: 'UA-160020932-1',
+                head: true,
+            },
+        },
+        {
             resolve: `gatsby-plugin-prefetch-google-fonts`,
             options: {
                 fonts: [
