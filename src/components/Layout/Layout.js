@@ -7,7 +7,6 @@ import { LightTheme } from '../../theme';
 const NormalizeStyle = createGlobalStyle`
     ${normalize()};
     html, body {
-        font-size: 21px;
         height: 100%;
         width: 100%;
         font-family: 'Open Sans'

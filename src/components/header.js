@@ -2,21 +2,15 @@ import { Link as LinkGatsby } from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ThemeToggle from '../components/ThemeToggle/ThemeToggle';
-import {
-    Box,
-    useColorMode,
-    Flex,
-    Link,
-    IconButton,
-    Icon,
-} from '@chakra-ui/core';
+import { Box, useColorMode, Flex, Link, IconButton } from '@chakra-ui/core';
 import styled from 'styled-components';
+import { Emoji } from './Emoji';
 
 const FirstPart = styled.span`
     font-family: "Georgia, 'Times New Roman', Times, serif'";
 `;
 
-const Header = ({ siteTitle }) => {
+const Header = () => {
     const { colorMode } = useColorMode();
     const bgColor = { light: 'teal.500', dark: 'teal.900' };
     return (
@@ -30,7 +24,9 @@ const Header = ({ siteTitle }) => {
                         color: `white`,
                     }}
                 >
-                    <FirstPart>👨 Matthieu Coulon</FirstPart>
+                    <FirstPart>
+                        <Emoji val="👨" /> Matthieu Coulon
+                    </FirstPart>
                 </Link>
                 <Flex flexWrap="wrap" justifyContent="flex-end">
                     <span>

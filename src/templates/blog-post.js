@@ -3,6 +3,8 @@ import { graphql } from 'gatsby';
 import SEO from '../components/seo';
 import Layout from '../components/layout';
 import ContentArticle from '../components/ContentArticle';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
+
 const BlogPostTemplate = props => {
     const post = props.data.markdownRemark;
     const { previous, next } = props.pageContext;
@@ -27,10 +29,11 @@ export const pageQuery = graphql`
                 title
             }
         }
-        markdownRemark(fields: { slug: { eq: $slug } }) {
+        mdx {
             id
             excerpt(pruneLength: 160)
             html
+            body
             frontmatter {
                 title
                 date(formatString: "MMMM DD, YYYY")

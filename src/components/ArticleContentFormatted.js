@@ -1,8 +1,10 @@
 import React from 'react';
-import { Box, useTheme, useColorMode } from '@chakra-ui/core';
+import { Box, useTheme, useColorMode, Text } from '@chakra-ui/core';
 import styled from 'styled-components';
+import RehypeReact from 'rehype-react';
+import Code from './MarkdownFormatter/CodeBis';
 
-const ArticleContentFormatted = props => {
+const ArticleContentFormatted = ({ content }) => {
     const theme = useTheme();
     const bgColorTableHead = {
         light: theme.colors.gray[300],
@@ -12,15 +14,16 @@ const ArticleContentFormatted = props => {
         light: theme.colors.gray[600],
         dark: theme.colors.gray[200],
     };
-    const bgColorTableBody = {
-        light: theme.colors.gray[600],
-        dark: theme.colors.gray[100],
-    };
 
     const { colorMode } = useColorMode();
 
     const colorTitle = {
         light: theme.colors.gray[700],
+        dark: theme.colors.gray[100],
+    };
+
+    const colorText = {
+        light: theme.colors.gray[600],
         dark: theme.colors.gray[100],
     };
 
@@ -119,11 +122,121 @@ const ArticleContentFormatted = props => {
         }
     `;
 
-    return (
-        <StyleFormatted>
-           {props.children}
-        </StyleFormatted>
+    // Title Part
+    const H1 = ({ children }) => (
+        <Text
+            mt="2"
+            mb="2"
+            as="h1"
+            fontSize="4xl"
+            color={colorTitle[colorMode]}
+        >
+            {children}
+        </Text>
     );
+    const H2 = ({ children }) => (
+        <Text
+            mt="2"
+            mb="2"
+            as="h2"
+            fontSize="3xl"
+            color={colorTitle[colorMode]}
+        >
+            {children}
+        </Text>
+    );
+    const H3 = ({ children }) => (
+        <Text
+            mt="2"
+            mb="2"
+            as="h3"
+            fontSize="2xl"
+            color={colorTitle[colorMode]}
+        >
+            {children}
+        </Text>
+    );
+    const H4 = ({ children }) => (
+        <Text mt="2" mb="2" as="h4" fontSize="xl" color={colorTitle[colorMode]}>
+            {children}
+        </Text>
+    );
+
+    const DefaultText = ({ children, ...rest }) => (
+        <Text
+            fontSize={['sm', 'md', 'md', 'lg']}
+            color={colorText[colorMode]}
+            {...rest}
+        >
+            {children}
+        </Text>
+    );
+    const Paragraph = ({ children }) => <DefaultText>{children}</DefaultText>;
+    const I = ({ children }) => <DefaultText as="i">{children}</DefaultText>;
+    const U = ({ children }) => <DefaultText as="u">{children}</DefaultText>;
+    const Abbr = ({ children }) => (
+        <DefaultText as="abbr">{children}</DefaultText>
+    );
+    const Cite = ({ children }) => (
+        <DefaultText as="cite">{children}</DefaultText>
+    );
+    const Del = ({ children }) => (
+        <DefaultText as="del">{children}</DefaultText>
+    );
+    const Em = ({ children }) => <DefaultText as="em">{children}</DefaultText>;
+    const Ins = ({ children }) => (
+        <DefaultText as="ins">{children}</DefaultText>
+    );
+    const Kbd = ({ children }) => (
+        <DefaultText as="kbd">{children}</DefaultText>
+    );
+    const Mark = ({ children }) => (
+        <DefaultText as="mark">{children}</DefaultText>
+    );
+    const S = ({ children }) => <DefaultText as="s">{children}</DefaultText>;
+    const Samp = ({ children }) => (
+        <DefaultText as="samp">{children}</DefaultText>
+    );
+    const Sub = ({ children }) => (
+        <DefaultText as="sub">{children}</DefaultText>
+    );
+    const Sup = ({ children }) => (
+        <DefaultText as="sup">{children}</DefaultText>
+    );
+
+    const Pre = ({ children }) => <>{children}</>;
+
+    console.log(content);
+    const renderAst = new RehypeReact({
+        createElement: React.createElement,
+        components: {
+            h1: H1,
+            h2: H2,
+            h3: H3,
+            h4: H4,
+            h5: H4,
+            h6: H4,
+            p: Paragraph,
+            i: I,
+            u: U,
+            abbr: Abbr,
+            cite: Cite,
+            del: Del,
+            em: Em,
+            ins: Ins,
+            kbd: Kbd,
+            mark: Mark,
+            s: S,
+            samp: Samp,
+            sub: Sub,
+            sup: Sup,
+            code: Code,
+            // pre: Pre,
+        },
+    }).Compiler;
+
+    // TODO : gérer la partie "code"
+    return <Box fontSize={['md', 'md', 'lg', 'xl']}>{renderAst(content)}</Box>;
 };
 
 export default ArticleContentFormatted;

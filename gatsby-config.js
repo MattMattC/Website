@@ -21,9 +21,9 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-transformer-remark`,
+            resolve: `gatsby-plugin-mdx`,
             options: {
-                plugins: [
+                gatsbyRemarkPlugins: [
                     {
                         resolve: `gatsby-remark-images`,
                         options: {
@@ -40,6 +40,7 @@ module.exports = {
                     `gatsby-remark-copy-linked-files`,
                     `gatsby-remark-smartypants`,
                 ],
+                extensions: [`.md`, `.mdx`],
             },
         },
         `gatsby-transformer-sharp`,
@@ -53,6 +54,23 @@ module.exports = {
                 background_color: `#663399`,
                 theme_color: `#663399`,
                 display: `minimal-ui`,
+                icons: [
+                    {
+                        src: `favicons/favicon-32x32.png`,
+                        sizes: `32x32`,
+                        type: `image/png`,
+                    },
+                    {
+                        src: `favicons/favicon-16x16.png`,
+                        sizes: `16x16`,
+                        type: `image/png`,
+                    },
+                    {
+                        src: `favicons/android-chrome-192x192.png`,
+                        sizes: `192x192`,
+                        type: `image/png`,
+                    },
+                ],
             },
         },
         {
@@ -63,14 +81,10 @@ module.exports = {
             },
         },
         {
-            resolve: `gatsby-plugin-prefetch-google-fonts`,
+            resolve: `gatsby-plugin-google-fonts`,
             options: {
-                fonts: [
-                    {
-                        family: `Open Sans`,
-                        variants: [`400`, `600`, `700`],
-                    },
-                ],
+                fonts: [`Open Sans\:400,600,700`],
+                display: 'swap',
             },
         },
     ],

@@ -11,21 +11,25 @@ import {
 } from '@chakra-ui/core';
 import BadgeByCat from './BadgeByCat';
 
-const Article = props => {
+const ArticleItem = props => {
     const { node } = props;
+
+    const title = node.frontmatter.title || node.fields.slug;
+    var options = { year: 'numeric', month: 'short', day: 'numeric' };
+
+    // color instances
     const { colorMode } = useColorMode();
     const colorText = { light: 'teal.800', dark: 'gray.100' };
     const colorTextSmall = { light: 'gray.500', dark: 'gray.300' };
     const colorDescription = { light: 'gray.600', dark: 'gray.300' };
-    const title = node.frontmatter.title || node.fields.slug;
-    var options = { year: 'numeric', month: 'short', day: 'numeric' };
+    const bgColor = { light: 'gray.200', dark: 'gray.700' };
 
     const date = new Intl.DateTimeFormat('fr-FR', options).format(
         new Date(node.frontmatter.date)
     );
 
     return (
-        <Box key={node.fields.slug} pt={2}>
+        <Box rounded="md" key={node.fields.slug} p={3} bg={bgColor[colorMode]}>
             <header>
                 <Flex justifyContent="space-between">
                     <Flex alignItems="center">
@@ -37,7 +41,7 @@ const Article = props => {
                         />
                         <Text
                             as="small"
-                            fontSize="xs"
+                            fontSize="md"
                             color={colorTextSmall[colorMode]}
                         >
                             {date}
@@ -52,14 +56,14 @@ const Article = props => {
                         />
                         <Text
                             as="small"
-                            fontSize="xs"
+                            fontSize="sm"
                             color={colorTextSmall[colorMode]}
                         >
                             {node.frontmatter.time_to_read} min
                         </Text>
                     </Flex>
                 </Flex>
-                <Heading as="h3" fontSize="2xl" color={colorText[colorMode]}>
+                <Heading as="h3" fontSize="3xl" color={colorText[colorMode]}>
                     <Link as={LinkGatsby} to={'/blog' + node.fields.slug}>
                         {title}
                     </Link>
@@ -74,7 +78,6 @@ const Article = props => {
             </Flex>
             <Text
                 mt="2"
-                fontSize="sm"
                 color={colorDescription[colorMode]}
                 dangerouslySetInnerHTML={{
                     __html: node.frontmatter.description || node.excerpt,
@@ -82,7 +85,7 @@ const Article = props => {
             />
 
             <Flex justifyContent="right">
-                <Text fontSize="xs">
+                <Text fontSize="sm">
                     <Link
                         color={colorText[colorMode]}
                         as={LinkGatsby}
@@ -96,6 +99,6 @@ const Article = props => {
     );
 };
 
-Article.propTypes = {};
+ArticleItem.propTypes = {};
 
-export default Article;
+export default ArticleItem;

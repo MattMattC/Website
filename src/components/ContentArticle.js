@@ -7,58 +7,43 @@ import {
     Heading,
     Text,
     Divider,
-    Flex,
-    Icon,
     Link,
 } from '@chakra-ui/core';
 import { Link as LinkGatsby } from 'gatsby';
 import BadgeByCat from '../components/BadgeByCat';
 import ArticleContentFormatted from './ArticleContentFormatted';
+import { Emoji } from './Emoji';
+import { SubInfo } from './Article/SubInfo';
+import { Badges } from './Badges';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 
 const ContentArticle = props => {
     const { post, previous, next } = props;
     const { colorMode } = useColorMode();
-    const colorText = { light: 'teal.600', dark: 'gray.100' };
+
+    const colorText = { light: 'teal.800', dark: 'gray.100' };
     const smallText = { light: 'gray.500', dark: 'gray.100' };
     const colorBorder = { light: 'teal.600', dark: 'gray.100' };
-    var options = { year: 'numeric', month: 'long', day: 'numeric' };
-
-    const date = new Intl.DateTimeFormat('fr-FR', options).format(
-        new Date(post.frontmatter.date)
-    );
+    const bgColor = { light: 'gray.100', dark: 'gray.700' };
 
     return (
-        <Box>
+        <Box p="3" rounded="md" bg={bgColor[colorMode]}>
             <header>
-                <Text color={smallText[colorMode]} as="p" fontSize="xs">
+                <Text color={smallText[colorMode]} as="p" fontSize="md">
                     <Link as={LinkGatsby} to="/">
-                        Retour
+                        <Emoji val="⬅️" /> Retour
                     </Link>
                 </Text>
-                <Heading color={colorText[colorMode]}>
+                <Heading size="2xl" color={colorText[colorMode]}>
                     {post.frontmatter.title}
                 </Heading>
-                {post.frontmatter.categories.length > 0
-                    ? post.frontmatter.categories.map((cat, index) => (
-                          <BadgeByCat key={index} cat={cat} />
-                      ))
-                    : null}
-                <Flex justify="space-between">
-                    <Text color={colorText[colorMode]} as="p" fontSize="xs">
-                        {date}
-                    </Text>
-                    {post.frontmatter.time_to_read ? (
-                        <Text color={colorText[colorMode]} as="p" fontSize="xs">
-                            <Icon name="time" />
-                            {' ' + post.frontmatter.time_to_read + ' m'}
-                        </Text>
-                    ) : null}
-                </Flex>
+                <Badges badges={post.frontmatter.categories} />
+
+                <SubInfo post={post} fontSize="sm" color={colorText} />
             </header>
             <Divider borderColor={colorBorder[colorMode]} />
-            <ArticleContentFormatted>
-                 <Box as="section" dangerouslySetInnerHTML={{ __html: post.html }} />
-            </ArticleContentFormatted>
+            <MDXRenderer>{post.body}</MDXRenderer>
+            {/* <ArticleContentFormatted content={post.htmlAst} /> */}
             <Divider borderColor={colorBorder[colorMode]} />
             <nav>
                 <ButtonGroup spacing={4}>

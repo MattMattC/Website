@@ -12,18 +12,16 @@ const BadgeByCat = ({ cat }) => {
             colorCat = { light: 'yellow', dark: 'yellow' };
             break;
         case 'photo':
-            colorCat = { light: 'red', dark: 'red' };
-            break;
         case 'tech':
-            colorCat = { light: 'red', dark: 'red' };
-            break;
         case 'my-life':
             colorCat = { light: 'red', dark: 'red' };
+            break;
+        default:
             break;
     }
 
     return (
-        <Badge mr="1" fontSize="0.6em" variantColor={colorCat[colorMode]}>
+        <Badge mr="1" fontSize="xs" variantColor={colorCat[colorMode]}>
             {cat}
         </Badge>
     );
